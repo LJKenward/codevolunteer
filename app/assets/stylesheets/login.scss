@@ -1,0 +1,14 @@
+    .login-container {
+      background-color: #DADADA;
+      background-image: url('http://i.imgbox.com/dZkiWhwE.jpg');
+      height: 100vh;
+    }
+    .login-container body > .grid {
+      height: 100%;
+    }
+    .login-container .image {
+      margin-top: -100px;
+    }
+    .login-container .column {
+      max-width: 450px;
+    }
