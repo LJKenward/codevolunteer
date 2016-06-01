@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   # organization user ####################
   get '/organisations/login' => 'sessions#new'
-  post '/organisation/login' => 'sessions#create'
+  post '/organisations/login' => 'sessions#create'
   delete '/organisations/logout' => 'sessions#destroy'
 
   # organisation pages #####################
@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   get 'volunteers/signup' => 'volunteers#new'
 
   resources :volunteers
+
+  resources :sessions
 
 end
