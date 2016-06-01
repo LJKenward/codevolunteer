@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_org 
-    redirect_to '/login' unless current_org
+    redirect_to '/organisations/login' unless current_org
   end
   
   def current_vol
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
   
   def require_vol 
-    redirect_to '/login' unless current_vol
+    redirect_to '/volunteers/login' unless current_vol
   end
 
 end

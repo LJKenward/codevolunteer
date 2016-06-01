@@ -1,24 +1,70 @@
 <!-- THIS IS THE ORGANISATIONS SIGN UP FORM -->
 
-<!--  if statement here about error to diaply message -->
-  
-  <script src="../dist/components/form.js"></script>
-  <script src="../dist/components/transition.js"></script>
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a class="active item" href="/">Coder Volunteer</a>
+    <a class="item" href="/organisations">Organisations</a>
+    <a class="item" href="/volunteers">Volunteers</a>
+    <div class="right menu">
+      <div class="item"><% if current_org %>
+      <%= current_org.email %>
+      </div>
+      <div class="item">
+        <form action="/organisations/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <style type="text/css">
-    body {
-      background-color: #DADADA;
-    }
-    body > .grid {
-      height: 100%;
-    }
-    .image {
-      margin-top: -100px;
-    }
-    .column {
-      max-width: 450px;
-    }
-  </style>
+<!-- Sidebar Menu -->
+<div class="ui vertical inverted sidebar menu">
+  <a class="active item" href="/">Code Volunteers</a>
+  <a class="item" href="/organisations">Organisations</a>
+  <a class="item" href="volunteers">Volunteers</a>
+  <div class="item"><% if current_org %>
+      <%= current_org.email %>
+      </div>
+      <div class="item">
+        <form action="/organisations/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
+      </div>
+</div>
+
+<!-- Page Contents -->
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment login"> 
+
+    <div class="ui container">
+      <div class="ui large secondary inverted pointing menu">
+        <a class="toc item">
+          <i class="sidebar icon"></i>
+        </a>
+        <a class="active item" href="/">Code Volunteers</a>
+        <a class="item" href="/organisations">Organisations</a>
+        <a class="item" href='/volunteers'>Volunteers</a>
+        <div class="right item">
+          <% if current_org %>
+      <%= current_org.email %>
+      <form action="/organisations/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   <script>
   $(document)
     .ready(function() {
@@ -26,7 +72,7 @@
         .form({
           fields: {
             email: {
-              identifier  : 'email',
+              identifier  : 'session[email]',
               rules: [
                 {
                   type   : 'empty',
@@ -39,15 +85,15 @@
               ]
             },
             password: {
-              identifier  : 'password',
+              identifier  : 'session[password]',
               rules: [
                 {
                   type   : 'empty',
                   prompt : 'Please enter your password'
                 },
                 {
-                  type   : 'length[6]',
-                  prompt : 'Your password must be at least 6 characters'
+                  type   : 'length[3]',
+                  prompt : 'Your password must be at least 3 characters'
                 }
               ]
             }
@@ -59,39 +105,31 @@
   </script>
 
 
-      <h1>Log in (Sessions new)</h1>
-      
-      <%= form_for(:session, url: organisations_login_path) do |f| %> 
-        <%= f.email_field :email, :placeholder => "Email" %> 
-        <%= f.password_field :password, :placeholder => "Password" %> 
-        <%= f.submit "Log in" %>
-      <% end %>
-
-      
-
 <div class="ui middle aligned center aligned grid">
   <div class="column">
     <h2 class="ui teal image header">
-      <img src="assets/images/logo.png" class="image">
       <div class="content">
-        Log-in to your account
+        <h1>Organisations Login</h1>
       </div>
     </h2>
-    <form class="ui large form">
+       <form action="/organisations/login" accept-charset="UTF-8" method="post" class="ui large form">
+     <input name="utf8" type="hidden" value="✓">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden" name="authenticity_token" value="">
       <div class="ui stacked segment">
         <div class="field">
           <div class="ui left icon input">
             <i class="user icon"></i>
-            <input type="text" name="email" placeholder="E-mail address">
+            <input placeholder="Email" type="email" name="session[email]" id="session_email"> 
           </div>
         </div>
         <div class="field">
           <div class="ui left icon input">
             <i class="lock icon"></i>
-            <input type="password" name="password" placeholder="Password">
+            <input placeholder="Password" type="password" name="session[password]" id="session_password">
           </div>
         </div>
-        <div class="ui fluid large teal submit button">Login</div>
+        <input type="submit" name="commit" value="Log in" class="ui fluid large teal submit button">
       </div>
 
       <div class="ui error message"></div>
@@ -99,7 +137,9 @@
     </form>
 
     <div class="ui message">
-      New to us? <a href="#">Sign Up</a>
+      New to us? <a href="/organisations/signup">Sign Up</a>
     </div>
   </div>
+</div>
+
 </div>
