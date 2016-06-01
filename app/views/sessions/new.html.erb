@@ -1,3 +1,5 @@
+<!-- THIS IS THE ORGANISATIONS SIGN UP FORM -->
+
 <!--  if statement here about error to diaply message -->
   
   <script src="../dist/components/form.js"></script>
@@ -59,7 +61,7 @@
 
       <h1>Log in (Sessions new)</h1>
       
-      <%= form_for(:session, url: login_path) do |f| %> 
+      <%= form_for(:session, url: organisations_login_path) do |f| %> 
         <%= f.email_field :email, :placeholder => "Email" %> 
         <%= f.password_field :password, :placeholder => "Password" %> 
         <%= f.submit "Log in" %>

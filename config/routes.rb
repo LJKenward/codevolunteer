@@ -8,33 +8,29 @@ Rails.application.routes.draw do
 
   # get '/login' => 'welcome#login'
 
-  # organization ####################
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  # organization user ####################
+  get '/organisations/login' => 'sessions#new'
+  post '/organisation/login' => 'sessions#create'
+  delete '/organisations/logout' => 'sessions#destroy'
 
+  # organisation pages #####################
   get '/organisations' => 'organisations#index'
   get 'organisations/signup' => 'organisations#new'
   # show single organisation
   get '/organisations/:id' => 'organisations#show'
-
   
   resources :organisations
 
-  # volunterrs ######################
+  # volunteer user ######################
   get '/volunteers/login' => 'volunteer_sessions#new'
   post '/volunteers/login' => 'volunteer_sessions#create'
+  delete '/organisations/logout' => 'volunteer_sessions#destroy' #NEED TO CREATE THIS ELSE WHERE?
 
+
+  # volunteer pages #####################
   get '/volunteers' => 'volunteers#index'
   get 'volunteers/signup' => 'volunteers#new'
 
   resources :volunteers
-
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
 end

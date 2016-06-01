@@ -1,77 +1,45 @@
-  <!-- <link rel="stylesheet" type="text/css" href="../dist/components/reset.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/site.css">
-
-  <link rel="stylesheet" type="text/css" href="../dist/components/container.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/grid.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/header.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/image.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/menu.css">
-
-  <link rel="stylesheet" type="text/css" href="../dist/components/divider.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/dropdown.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/segment.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/button.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/list.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/icon.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/sidebar.css">
-  <link rel="stylesheet" type="text/css" href="../dist/components/transition.css"> -->
-
-  <script src="../dist/components/visibility.js"></script>
-  <script src="../dist/components/sidebar.js"></script>
-  <script src="../dist/components/transition.js"></script>
-  <script>
-  $(document)
-    .ready(function() {
-
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
-
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
-
-    })
-  ;
-  </script>
 
 <!-- Following Menu -->
 <div class="ui large top fixed hidden menu">
   <div class="ui container">
-    <a class="active item">Code Volunteers</a>
-    <a class="item">About</a>
-    <a class="item">Organisations</a>
-    <a class="item">Volunteers</a>
+    <a class="active item" href="/">Coder Volunteer</a>
+    <a class="item" href="/organisations">Organisations</a>
+    <a class="item" href="/volunteers">Volunteers</a>
     <div class="right menu">
-      <div class="item">
-        <a class="ui button">Log In</a>
+      <div class="item"><% if current_org %>
+      <%= current_org.email %>
       </div>
       <div class="item">
-        <a class="ui primary button">Sign Up</a>
+        <form action="/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
 
+
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
-  <a class="active item">Code Volunteers</a>
-  <a class="item">About</a>
-  <a class="item">Organisations</a>
-  <a class="item">Volunteers</a>
-  <a class="item">Log In</a>
-  <a class="item">Sign Up</a>
+  <a class="active item" href="/">Code Volunteers</a>
+  <a class="item" href="/organisations">Organisations</a>
+  <a class="item" href="volunteers">Volunteers</a>
+  <div class="item"><% if current_org %>
+      <%= current_org.email %>
+      </div>
+      <div class="item">
+        <form action="/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
+      </div>
 </div>
+
 
 <!-- Page Contents -->
 <div class="pusher">
@@ -82,115 +50,104 @@
         <a class="toc item">
           <i class="sidebar icon"></i>
         </a>
-        <a class="active item">Code Volunteers</a>
-        <a class="item">About</a>
-        <a class="item">Organisations</a>
-        <a class="item">Volunteers</a>
+        <a class="active item" href="/">Code Volunteers</a>
+        <a class="item" href="/organisations">Organisations</a>
+        <a class="item" href='/volunteers'>Volunteers</a>
         <div class="right item">
-          <a class="ui inverted button">Log In</a>
-          <a class="ui inverted button">Sign Up</a>
+          <% if current_org %>
+      <%= current_org.email %>
+      <form action="/logout" method="post">
+          <input type="hidden" value="delete" name="_method">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <button class="ui button">Logout</button>
+        </form>
+          <% end %>
+
         </div>
       </div>
     </div>
 
     <div class="ui text container">
       <h1 class="ui inverted header">
-        Volunteer Teaching Code Overseas
+        Volunteer Teaching Coding Abroad
       </h1>
-      <h2>Break the cycle of poverty and empower lives.</h2>
+      <h2>Breaking the cycle of poverty through education.</h2>
     </div>
 
   </div>
-
-<div class="ui vertical stripe quote segment">
-    <div class="ui equal width stackable internally celled grid">
-      <div class="center aligned row">
-        <div class="column">
-          <h3>Organisations</h3>
-          <p><button class="huge ui button">
-             Sign Up Now
-            </button></p>
-        </div>
-        <div class="column">
-          <h3>Volunteers</h3>
-          <p>
-           <button class="huge ui button">
-            Sign Up Now
-          </button>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <div class="ui vertical stripe segment">
     <div class="ui middle aligned stackable grid container">
       <div class="row">
         <div class="eight wide column">
           <h3 class="ui header">We Help Communities Grow</h3>
-          <p>We want to educate the disadvanged in a evergreen skill set that will break the cycle of poverty. </p>
+          <p>We want to educate the disadvantaged in a evergreen skill set that will break the cycle of poverty.</p>
           <h3 class="ui header">Experience Culture While Coding</h3>
-          <p>Volunteers can use their skill set to teach computing and coding around the world. Combine your holiday with unforgettable experiences and people. </p>
+          <p>Volunteers can use their skill set to teach computing and coding around the world. Combine your holiday with unforgettable experiences and people.</p>
         </div>
         <div class="six wide right floated column">
-          <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
+          <img src="http://i.imgbox.com/jkrc7gIH.png" class="ui large bordered rounded image">
         </div>
       </div>
     </div>
   </div>
 
-<div class="ui container">
-     <div class="ui text container">
-      <h1> Featured Organisations</h1>
+
+  <div class="ui vertical stripe quote segment">
+    <div class="ui equal width stackable internally celled grid">
+      <div class="center aligned row">
+        <div class="column">
+          <h3>Organisations</h3>
+          <p>Get skilled volunteers to run a capsule program, teach skills that will break teh cycle of poverty and allow your community to enter a global economy.</p>
+            <div class="row">
+              <a class="ui huge button" href="organisations/signup">Organisation Sign Up</a>
+            </div>
+        </div>
+        <div class="column">
+          <h3>Volunteers</h3>
+          <p>
+            Use your skills to enrich the lives of others, while being a part of a community and travelling the world. Create a capsule project and take the lead in the education of others.
+          </p>
+          <div class="row">
+            <a class="ui huge button" href="volunteers/signup">Volunteer Sign Up</a>
+            </div>
+        </div>
+        </div>
+      </div>
     </div>
-<div class="ui three stackable cards">
-  <div class="ui special card">
-        <div class="blurring dimmable image">
-      <div class="ui dimmer">
-        <div class="content">
-          <div class="center">
-            <div class="header">Helping Overcome Obstacles Peru</div>
+
+
+  <div class="ui inverted vertical footer segment">
+    <div class="ui container">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="three wide column">
+          <h4 class="ui inverted header">Organisations</h4>
+          <div class="ui inverted link list">
+            <a href="/organisations/signup" class="item">Sign Up</a>
+            <a href="/organisations/login" class="item">Login</a>
+            <a href="/organisations/faqs" class="item">FAQs</a>
+            <a href="/organisations" class="item">Browse All</a>
           </div>
         </div>
+        <div class="three wide column">
+          <h4 class="ui inverted header">Volunteers</h4>
+          <div class="ui inverted link list">
+            <a href="/volunteers/signup" class="item">Sign Up</a>
+            <a href="/volunteers/login" class="item">Login</a>
+            <a href="/volunteers/faqs" class="item">FAQs</a>
+            <a href="/volunteers/testimonials" class="item">Testimonials</a>
+          </div>
+        </div>
+        <div class="seven wide column">
+          <h4 class="ui inverted header">Our Mission</h4>
+          <p>Breaking the cycle of poverty through current and continuious education.</p>
+        </div>
       </div>
-      <img src="https://www.omprakash.org/images/gallery/profiles/1416849321_slider1.jpg">
-    </div>
-    <div class="content">
-    <div class="header">Arequipa, Peru</div>
-    <div class="meta">2 days ago</div>
-    <div class="description">
-      <p>HOOP (Helping Overcome Obstacles Peru) is a non profit organization enhancing the education of disadvantaged children and their families in the Flora Tristan community.</p>
-    </div>
-  </div>
-  <div class="extra content">
-    <i class="check icon"></i>
-    121 Votes
-  </div>
-  <div class="ui bottom attached button">
-      <i class="add icon"></i>
-      Apply Now
-    </div>
-
-  </div>
-  <div class="card">
-    <div class="image">
-      <img src="https://www.omprakash.org/images/gallery/profiles/1455563078_IMG_1383.JPG">
-    </div>
-  </div>
-  <div class="card">
-    <div class="image">
-      <img src="https://www.omprakash.org/images/gallery/profiles/1457030100_IMG_7396.jpg">
     </div>
   </div>
 </div>
-</div>
 
-  
+</body>
 
-<script>
-$('.special.cards .image').dimmer({
-  on: 'hover'
-});
-
-</script>
+</html>
+        
