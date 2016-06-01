@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  get '/login' => 'welcome#login'
+
   get '/contact' => 'welcome#contact'
 
   # get '/login' => 'welcome#login'
