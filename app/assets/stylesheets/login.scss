@@ -1,14 +1,15 @@
-    .login-container {
-      background-color: #DADADA;
-      background-image: url('http://i.imgbox.com/dZkiWhwE.jpg');
-      height: 100vh;
-    }
-    .login-container body > .grid {
+    body > .grid {
       height: 100%;
     }
-    .login-container .image {
-      margin-top: -100px;
+
+    .ui.grid {
+      margin-top: 4rem;
     }
-    .login-container .column {
+
+    .column {
       max-width: 450px;
+    }
+    
+    .ui.inverted.vertical.masthead.center.aligned.segment.login {
+      background-image: url('http://i.imgbox.com/dZkiWhwE.jpg');
     }
