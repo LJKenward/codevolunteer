@@ -1,0 +1,21 @@
+<% if @current_org && @current_org.id == @organisation.id %> 
+  <p><%= @current_org.id %></p>
+  <p>
+    <%= link_to "Edit Organisation", edit_organisation_path(@organisation.id) %> 
+  </p> 
+<% end %>
+<p>Org ID: <%= @organisation.id %></p>
+
+<%= @organisation.org_name %>
+
+
+<% @volunteers.each do |vol| %>
+  <h3><%= vol.first_name %></h3>
+
+<% end %>
+
+<% @props.each do |prop| %>
+  <%= prop.volunteer.first_name %>
+  <%= prop.status %>
+
+<% end %>

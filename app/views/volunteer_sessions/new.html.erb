@@ -1,0 +1,9 @@
+<h1>Volunteer Sign up</h1>
+
+      <h1>Log in (Volunteer Sessions new)</h1>
+      
+      <%= form_for(:volunteer_session, url: volunteers_login_path) do |f| %> 
+        <%= f.email_field :email, :placeholder => "Email" %> 
+        <%= f.password_field :password, :placeholder => "Password" %> 
+        <%= f.submit "Log in" %>
+      <% end %>

@@ -1,0 +1,9 @@
+<h1>VOLUNTEER Sign up</h1>
+
+    <%= form_for(@volunteer) do |o| %>
+      <%= o.text_field :first_name, :placeholder => "First Name" %>
+      <%= o.text_field :last_name, :placeholder => "Last Name" %>
+      <%= o.email_field :email, :placeholder => "Email" %>
+      <%= o.password_field :password, :placeholder => "Password" %>
+      <%= o.submit "Create an account" %>
+    <% end %>

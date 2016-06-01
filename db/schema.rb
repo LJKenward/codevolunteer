@@ -11,15 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530041649) do
+ActiveRecord::Schema.define(version: 20160531071849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "organisations", force: :cascade do |t|
+    t.string   "org_name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.integer  "volunteer_id"
+    t.integer  "organisation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "status"
+  end
+
+  add_index "proposals", ["organisation_id"], name: "index_proposals_on_organisation_id", using: :btree
+  add_index "proposals", ["volunteer_id"], name: "index_proposals_on_volunteer_id", using: :btree
+
+  create_table "volunteers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_foreign_key "proposals", "organisations"
+  add_foreign_key "proposals", "volunteers"
 end
